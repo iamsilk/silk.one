@@ -12,6 +12,9 @@ jobs:
       - name: Checkout main
         uses: actions/checkout@v2
 
+      - name: Install Material for MkDocs Insiders
+        run: pip install git+https://${{ secrets.GITHUB_TOKEN }}@github.com/squidfunk/mkdocs-material-insiders.git
+
       - name: Build MkDocs site
         uses: mhausenblas/mkdocs-deploy-gh-pages@master
         env:
