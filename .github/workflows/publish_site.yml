@@ -1,0 +1,19 @@
+name: Publish Site
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Deploy site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v2
+
+      - name: Build MkDocs site
+        uses: mhausenblas/mkdocs-deploy-gh-pages@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CUSTOM_DOMAIN: new.silk.one
