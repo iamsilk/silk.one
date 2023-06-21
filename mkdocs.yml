@@ -1,0 +1,56 @@
+site_name: Stephen White | silk.one
+site_url: https://silk.one/
+
+theme:
+  name: material
+  logo: assets/images/favicon.png
+  favicon: assets/images/favicon.png
+  custom_dir: docs/overrides
+
+  features:
+  - navigation.tabs
+  
+  palette: 
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default 
+
+
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+
+nav:
+- Projects: projects.md
+- Competitions: competitions.md
+- Blog / Writeups:
+  - blog/index.md
+
+extra:
+  generator: true
+  social:
+  - icon: fontawesome/brands/github
+    link: https://github.com/IAmSilK
+  - icon: fontawesome/brands/linkedin
+    link: https://www.linkedin.com/in/stephen-w/
+#  - icon: fontawesome/brands/itch-io
+#    link: https://iamsilk.itch.io/
+
+plugins:
+- blog
+
+markdown_extensions:
+  - tables
