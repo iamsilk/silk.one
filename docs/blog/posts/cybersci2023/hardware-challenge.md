@@ -1,5 +1,4 @@
 ---
-draft: true
 date: 2023-06-21
 categories:
   - writeups
