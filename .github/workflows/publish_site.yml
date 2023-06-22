@@ -12,9 +12,6 @@ jobs:
       - name: Checkout main
         uses: actions/checkout@v2
 
-      - name: Write mkdocs-material-insiders to requirements file
-        run: echo "git+https://${{ secrets.INSIDERS_GH_TOKEN }}@github.com/squidfunk/mkdocs-material-insiders.git" > requirements.txt
-
       - name: Build MkDocs site
         uses: mhausenblas/mkdocs-deploy-gh-pages@master
         env:
