@@ -8,6 +8,7 @@ hide:
 
 | Competition                                      | Placement     | Type         | Team Name        | Date                      | Links                                                                                   |
 | ------------------------------------------------ | ------------- | ------------ | ---------------- | ------------------------- | --------------------------------------------------------------------------------------- |
+| **Google Capture The Flag 2023                   | 302 / 676     | CTF          | Shell We Hack?   | June 23-25, 2023          | [Link](https://ctftime.org/event/1929)                                                  |
 | **CyberSci 2023**                                | 5th           | CTF, Defense | UNBCTF1          | June 1-4, 2023            | [Link](https://cybersecuritychallenge.ca/en/)                                           |
 | **BYUCTF 2023**                                  | 55 / 542      | CTF          | Shell We Hack?   | May 19-21, 2023           | [Link](https://ctftime.org/event/1935)                                                  |
 | **WolvCTF 2023**                                 | 55 / 599      | CTF          | UNBCTF           | March 17-19, 2023         | [Link](https://ctftime.org/event/1866/)                                                 |
