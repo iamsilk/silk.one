@@ -48,7 +48,8 @@ extra:
 #    link: https://iamsilk.itch.io/
 
 plugins:
-- blog
+- blog:
+    blog_toc: true
 
 markdown_extensions:
   - tables
