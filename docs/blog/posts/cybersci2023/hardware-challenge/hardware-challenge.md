@@ -11,6 +11,8 @@ tags:
 
 # CyberSci Hardware Challenge
 
+A copy of this writeup is written in the [UNBCTF's writeups repository](https://github.com/UNBCTF/writeups/blob/main/Challenges/2023/cybersci2023/hardware-challenge/hardware-challenge.md).
+
 **Difficulty:** Medium/Hard
 
 The objective of the challenge is to dump the firmware from the provided hardware badge and reverse engineer it. In theory this is quite easy, however it took quite some time to get familiar with the AVR architecture and instruction set.
