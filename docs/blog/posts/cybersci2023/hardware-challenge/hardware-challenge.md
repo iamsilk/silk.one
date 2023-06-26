@@ -7,6 +7,7 @@ authors:
   - matt
 tags:
   - hardware
+comments: true
 ---
 
 # CyberSci Hardware Challenge
