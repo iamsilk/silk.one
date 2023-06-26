@@ -246,17 +246,16 @@ Let's start by analyzing the first block. We start by breaking it up into it's p
 3. Loading something from data space addresses `0x7d`, `0x7e`, `0x7f`?? It turns out these instructions were incorrectly decompiled by Cutter (and Ghidra). The correct instructions have been commented in the version on the right.
 4. Storing some registers in the stack. These are likely input parameters for the function, There are eight input registers, but AVR uses register pairs for two-byte words. So there are likely four input parameters. We will start a table, and update it as we move along and uncover some of their purposes.
 
-| Parameter Name | Input Registers | Stack Location |
-| -------------- | --------------- | -------------- |
-| *unknown*      | `r25:r24`       | `Y+46,Y+45`    |
-| *unknown*      | `r23:r22`       | `Y+48,Y+47`    |
-| *unknown*      | `r21:r20`       | `Y+50,Y+49`    |
-| *unknown*      | `r19:r18`       | `Y+52,Y+51`    |
+    | Parameter Name | Input Registers | Stack Location |
+    | -------------- | --------------- | -------------- |
+    | *unknown*      | `r25:r24`       | `Y+46,Y+45`    |
+    | *unknown*      | `r23:r22`       | `Y+48,Y+47`    |
+    | *unknown*      | `r21:r20`       | `Y+50,Y+49`    |
+    | *unknown*      | `r19:r18`       | `Y+52,Y+51`    |
 
 5. Loads the pointer from address `0x3802` into `r25:r24`. We know the pointer at address `0x3802` is `0x0fca`, which points to `JIGGYCIPHER{`. Then this part calls some function at `0x0f82`, which after some quick analysis seems to be a string length function. Then some registers are stored on the stack, probably the return values from `string_len`.
 
-
-![String Length Function](./images/StringLen.jpg)
+    ![String Length Function](./images/StringLen.jpg)
 
 6. The pointer at address `0x3802` is loaded into `r25:r24` again, and is also stored on the stack.
 
@@ -269,6 +268,7 @@ Now moving onto Loop 1.
 ![RefsJiggy Loop 1](./images/RefsJiggyLoop1.jpg)
 
 8. Loads some values from the stack. Referencing the start phase, we can tell `Y+9,Y+8` is the length of the `JIGGYCIPHER{` string. Also `Y+4,Y+3` starts as zero, and is probably the incremented variable (`i`) of this loop.
+{ ^ start=8 }
 
 9. Compares `i` against `string_len('JIGGYCIPHER{')`. If `i` is less than the string length, it continues the loop.
 

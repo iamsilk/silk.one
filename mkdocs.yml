@@ -52,4 +52,5 @@ plugins:
     blog_toc: true
 
 markdown_extensions:
-  - tables
+- tables
+- pm_attr_list
