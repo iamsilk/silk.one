@@ -168,15 +168,9 @@ Maybe there is some sort of encryption routine in the firmware!
 
 Ghidra does support the AVR architecture, however there is no direct support for the ATTINY1614 CPU.
 
-To get Ghidra to work with AVR, however, you need to install the languages.
-
-1. Download the Ghidra source code.
-2. Copy the `Ghidra/Processors/Atmel` directory into your Ghidra installation's Processors directory at `ghidra_X.X_PUBLIC/Ghidra/Processors`.
-3. Restart Ghidra and now you can select the AVR languages when importing a file.
+After reading the documentation, we found that the language was `AVR8:Little Endian:16 Bit` and it was compiled with GCC (uses `avr-libc`).
 
 ![Ghidra AVR Languages](./images/GhidraAVRLanguages.jpg)
-
-After reading the documentation, we found that the language was `AVR8:Little Endian:16 Bit` and it was compiled with GCC (uses `avr-libc`).
 
 The memory mapping was very messed up, and Ghidra created lots of weird memory segments. This is due to the fact that AVR uses a Harvard architecture, meaning that **the program code and memory are stored in separate physical locations, and have completely different addresses**. This is a nightmare for all pwn people, but it simplifies reversing for us, as we know the code in the flash is the only code that can be ran.
 
@@ -237,6 +231,8 @@ By switching to graph view, we can get a general idea of the function's working.
 
 ### RefsJiggy Analysis
 
+#### Start
+
 Let's start by analyzing the first block. We start by breaking it up into it's pieces.
 
 ![RefsJiggy Init](./images/RefsJiggyInit.jpg)
@@ -263,6 +259,8 @@ Let's start by analyzing the first block. We start by breaking it up into it's p
 
 So far, it seems like the start phase stores some input parameters onto the stack and gets the length of the `JIGGYCIPHER{` string.
 
+#### Loop 1
+
 Now moving onto Loop 1.
 
 ![RefsJiggy Loop 1](./images/RefsJiggyLoop1.jpg)
@@ -278,7 +276,7 @@ Now moving onto Loop 1.
 
 12. Loads a byte from the address stored in `r19:r18` into register `r18`. Then it saves the byte in `r18` into the address stored in `r25:r24`. This is effectively copying a byte from the address in `r19:r18` to the address in `r25:r24`.
 
-13. Increments `i` by one.
+13. Increments `i` by one and return to step 8.
 
 So it seems Loop 1 is copying the `JIGGYCIPHER{` string to some target address stored in `Y+52,Y+51`. It is important to note that Loop 1 is copying the **prefix** of JIGGYCIPHER, not the full flag-like string we saw before. As its copying the prefix, we can assume this is a function *generating* the flag-like string.
 
@@ -291,4 +289,126 @@ We know the generated string is being stored in the address in `Y+52,Y+51` which
 | *unknown*       | `r21:r20`       | `Y+50,Y+49`    |
 | `output_string` | `r19:r18`       | `Y+52,Y+51`    |
 
-http://www.mmajunke.de/doc0856.pdf
+#### Loop 2
+
+Moving onto Loop 2.
+
+![RefsJiggy Loop 2.1](./images/RefsJiggyLoop2_1.jpg)
+![RefsJiggy Loop 2.2](./images/RefsJiggyLoop2_2.jpg)
+
+14. Set `Y+5` stack value to zero.
+{ ^ start=14 }
+
+15. This step puts the address `Y+0x0c` into `r25:r24`. This address is then passed to the `init_rng` function. Refer to the [`init_rng`](#init_rng) section to see how we reversed this function.
+
+    Basically, `init_rng` takes an input address and copies the bytes `02050DFFFF0000AD8B0000050B0BFFFF00000DF000000E0D0FCAFFFFFFFFBEBAFECA` to the address. These bytes act as the initial state (or seed) of the `random_next` function we will see later.
+
+    Knowing now how this `init_rng` function works, we can see this step is copying the RNG's seed into the stack for later usage.
+
+16. Set `Y+7,Y+6` stack values to zero.
+
+17. Loads `Y+7,Y+6` from the stack. From step 16, we can see `Y+7,Y+6` start as zero, so this is probably the increment value `i` in this loop. 
+
+18. Loads `Y+46,Y+45` from the stack. From our input parameters, we can tell `Y+46,Y+45` is an input parameter. So it must be some sort of count or length. Let's call it `length`.
+
+    | Parameter Name  | Input Registers | Stack Location |
+    | --------------- | --------------- | -------------- |
+    | `length`        | `r25:r24`       | `Y+46,Y+45`    |
+    | *unknown*       | `r23:r22`       | `Y+48,Y+47`    |
+    | *unknown*       | `r21:r20`       | `Y+50,Y+49`    |
+    | `output_string` | `r19:r18`       | `Y+52,Y+51`    |
+
+19. Compares `i` against `length`. If `i` is less than `length`, it continues the loop.
+
+20. Loads some value from `Y+50,Y+49`, increments by one, and saves back on the stack. The value (before being incremented) is stored in `r25:r24`.
+
+21. Loads a byte from the address stored in `r25:r24` into register `r24` and then saves it on the stack at `Y+10`.
+
+22. Loads some value from `Y+50,Y+49`, increments by one, and saves back on the stack. The value (before being incremented) is stored in `r25:r24`.
+
+23. Loads a byte from the address stored in `r25:r24` into register `r24` and then saves it on the stack at `Y+11`.
+
+    Notice that steps 20 and 21 or nearly identical to 22 and 23? The only difference is bytes being saved to `Y+10` versus `Y+11`. This collection of steps seems to be reading some characters from the string who's address is stored in `Y+50,Y+49`. This is also an input parameter, so let's call it `input_string`.
+
+    | Parameter Name  | Input Registers | Stack Location |
+    | --------------- | --------------- | -------------- |
+    | `length`        | `r25:r24`       | `Y+46,Y+45`    |
+    | *unknown*       | `r23:r22`       | `Y+48,Y+47`    |
+    | `input_string`  | `r21:r20`       | `Y+50,Y+49`    |
+    | `output_string` | `r19:r18`       | `Y+52,Y+51`    |
+
+24. Loads the values at `Y+5` and `Y+10` from the stack and XORs them. The result is stored on the stack at `Y+5`. `Y+5` was set to zero in step 14.
+
+25. Loads some value from `Y+48,Y+47`, increments by one, and saves back on the stack. The value (before being incremented) is stored in `r25:r24`.
+
+26. Loads a byte from the address stored in `r25:r24` into register `r25`. The byte at `Y+11` is then loaded. These two bytes are then XORed together and the result is stored in `r17`.
+
+    The first byte is loaded from `Y+48,Y+47`, much like bytes were loaded in the previous steps. `Y+48,Y+47` is a input parameter, and seems to be another input string, so we will call it `input_string_2`.
+
+    | Parameter Name   | Input Registers | Stack Location |
+    | ---------------- | --------------- | -------------- |
+    | `length`         | `r25:r24`       | `Y+46,Y+45`    |
+    | `input_string_2` | `r23:r22`       | `Y+48,Y+47`    |
+    | `input_string`   | `r21:r20`       | `Y+50,Y+49`    |
+    | `output_string`  | `r19:r18`       | `Y+52,Y+51`    |
+
+27. A function, which we renamed to `random_next`, is called with an input parameter of the address `Y+0x0c`. Recall that in step 15, a string of bytes were loaded into this address. Refer to the [`random_next`](#random_next) section to see how we reversed this function.
+
+    Basically, `random_next` generates a random byte and stores it in `r24`. This random byte is dependent on its state, which is stored on the stack at `Y+0x0c`. The initial seed of this random number generator was loaded in step 15.
+
+    Knowing now how this `random_next` function works, we can see this step is generating a random byte and storing it in `r24`.
+
+28. The random byte and `r17` and XORed and the result is stored in `r18`. Recall that `r17` was set in step 26.
+
+29. A function is called with an input parameter of the address `Y+0x33` (`Y+51` in decimal), which contains the address for our output string. Refer to the [`write_hex`](#write_hex) section to see how we reversed this function.
+
+    Basically, `write_hex` receives an input byte in the register `r22`, converts it to its two hex characters, and writes these characters to the string's address stored in `r25:r24`.
+
+    Knowing how `write_hex` works, we can see it is writing the byte stored in `r18` to the `output_string`. This byte's value was determined in the previous step.
+
+30. Loads `Y+11` and `Y+5` from the stack. These values are then XORed and the result is stored in `r17`.
+
+31. `random_next` is called and the random byte is stored in `r24`.
+
+32. The random byte in `r24` (from step 31) and the byte in `r17` (step 30) are XORed and the result is stored in `r18`.
+
+33. `write_hex` is called and the byte stored in `r18` is written the the `output_string`.
+
+34. `random_next` is called and the random byte is stored in `r24`.
+
+35. Loads a byte `Y+10` from the stack into `r24`. Recall this byte was last written to in step 21, and is a character from `input_string`. This byte is then XORed against `r24` (the random byte from step 34) and the result is stored in `r18`.
+
+36. `write_hex` is called and the byte stored in `r18` is written the the `output_string`.
+
+37. Increments `i` by one and return to step 17.
+
+A lot happened in this loop. Let's recap:
+* Two characters were read from `input_string`.
+* One character was read from `input_string_2`.
+* `write_hex` was called three times, outputting three bytes (six characters) to `output_string`.
+* Each byte that was written was encrypted in a different way, through a series of XORs against other bytes and random bytes.
+
+#### End
+
+38. Loads the `output_string` address from the stack, increments it by one, and stores it on the stack. The address before being incremented is stored in `r25:r24`.
+
+39. A byte with value `0x7d` is written the `output_string` address from step 38. A quick ASCII table lookup shows this byte is the `}` character, the end of the JIGGYCIPHER.
+
+40. Loads the `output_string` address from the stack and stores `r1`'s value into it. `r1` is always zero, and so this step is putting the null-terminator onto the `output_string`.
+
+41. Restores the stack and pushed registers before returning from the function.
+
+So the end of this function adds the `}` character and a null-terminator to the end of the string, then returns.
+
+### Other Functions Analysis
+
+These functions are planned to be explained, but for now we have omitted writing their analysis so we can share this writeup sooner rather than later.
+
+#### init_rng
+
+#### random_next
+
+#### write_hex
+
+## Solution
+
