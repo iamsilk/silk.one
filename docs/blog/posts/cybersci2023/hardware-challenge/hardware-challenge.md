@@ -15,15 +15,19 @@ tags:
 
 The objective of the challenge is to dump the firmware from the provided hardware badge and reverse engineer it. In theory this is quite easy, however it took quite some time to get familiar with the AVR architecture and instruction set.
 
-Hints: *If you're just starting out, ask Jeff Bezos for help. If you're near the end, ask Jeff Bezos for help.*
+**Hints:** *If you're just starting out, ask Jeff Bezos for help. If you're near the end, ask Jeff Bezos for help.*
 
-Attachments: [*flash.hex*](./attachments/flash.hex), [*sram.hex*](./attachments/sram.hex), [*eeprom.hex*](./attachments/eeprom.hex) 
+**Attachments:** [*flash.hex*](./attachments/flash.hex), [*sram.hex*](./attachments/sram.hex), [*eeprom.hex*](./attachments/eeprom.hex)
 
-Solution: [*asd.py*](./attachments/asd.py)
+(*these attachments were not provided, and had to be recovered as part of the challenge*)
+
+**Solution:** [*asd.py*](./attachments/asd.py)
 
 ## The Badge
 
 ![Front of hardware badge](./images/CircuitBoard_Front.jpg)
+
+<!-- more -->
 
 ![Back of hardware badge](./images/CircuitBoard_Back.jpg)
 (ignore the soldering, that will come later)
