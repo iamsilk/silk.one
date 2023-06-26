@@ -15,7 +15,11 @@ tags:
 
 The objective of the challenge is to dump the firmware from the provided hardware badge and reverse engineer it. In theory this is quite easy, however it took quite some time to get familiar with the AVR architecture and instruction set.
 
-*Hints: If you're just starting out, ask Jeff Bezos for help. If you're near the end, ask Jeff Bezos for help.*
+Hints: *If you're just starting out, ask Jeff Bezos for help. If you're near the end, ask Jeff Bezos for help.*
+
+Attachments: [*flash.hex*](./attachments/flash.hex), [*sram.hex*](./attachments/sram.hex), [*eeprom.hex*](./attachments/eeprom.hex) 
+
+Solution: [*asd.py*](./attachments/asd.py)
 
 ## The Badge
 
@@ -413,6 +417,8 @@ These functions are planned to be explained, but for now we have omitted writing
 
 ## Solution
 
+If you don't want to read the full solution, feel free to spoil yourself: [asd.py](./attachments/asd.py)
+
 Working our way bottom-up, we need to first mimic the random number generator so we can generate the same random numbers that were used to encrypt the plaintext.
 
 ```py
@@ -602,10 +608,12 @@ quot:{Governments of the Industrial World, you weary giants of flesh and steel, 
 This is an Amazon(.ca?) gift card. Your claim code is ZBUH-3PYCC6-DKAG.
 ```
 
-The quote above is a bit mangled, but here is the full quote:
+The quote above is a bit mangled, but here it is in full:
 > Governments of the Industrial World, you weary giants of flesh and steel, I come from Cyberspace, the new home of Mind. On behalf of the future, I ask you of the past to leave us alone. You are not welcome among us. You have no sovereignty where we gather
 
 — John Perry Barlow, "A Declaration of the Independence of Cyberspace"
+
+[Final solve script: asd.py](./attachments/asd.py)
 
 ## Final Remarks
 
