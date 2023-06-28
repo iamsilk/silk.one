@@ -23,6 +23,8 @@ comments: true
 
 **Solution:** [*asd.py*](./attachments/asd.py)
 
+<!-- more -->
+
 ## First Look
 
 Firstly, we are given a .zip file containing the source code and Dockerfile of the application.
