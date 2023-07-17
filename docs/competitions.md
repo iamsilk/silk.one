@@ -8,6 +8,8 @@ hide:
 
 | Competition                                      | Placement     | Type         | Team Name        | Date                      | Links                                                                                   |
 | ------------------------------------------------ | ------------- | ------------ | ---------------- | ------------------------- | --------------------------------------------------------------------------------------- |
+| **HTB Business CTF 2023: The Great Escape**      | 113 / 699     | CTF          | BCK Security Inc | July 14-16, 2023          | [Link](https://ctftime.org/event/1989)                                                  |
+| **UIUCTF 2023**                                  | 277 / 818     | CTF          | Team Canada      | June 30-July 2, 2023      | [Link](https://ctftime.org/event/1899)                                                  |
 | **BSidesTLV 2023**                               | 34 / 162      | CTF          | Shell We Hack?   | June 26-28, 2023          | [Link](https://ctftime.org/event/2008)                                                  |
 | **Google Capture The Flag 2023**                 | 302 / 676     | CTF          | Shell We Hack?   | June 23-25, 2023          | [Link](https://ctftime.org/event/1929)                                                  |
 | **CyberSci 2023**                                | 5th           | CTF, Defense | UNBCTF1          | June 1-4, 2023            | [Link](https://cybersecuritychallenge.ca/en/)                                           |
