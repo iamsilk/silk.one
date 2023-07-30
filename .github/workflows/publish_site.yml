@@ -22,5 +22,5 @@ jobs:
         uses: mhausenblas/mkdocs-deploy-gh-pages@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CUSTOM_DOMAIN: new.silk.one
+          CUSTOM_DOMAIN: silk.one
           REQUIREMENTS: requirements.txt
