@@ -11,9 +11,13 @@ jobs:
     steps:
       - name: Checkout main
         uses: actions/checkout@v2
+        
+      - name: Write pm_attr_list to requirements file
+        run: echo "./pm_attr_list/" >> requirements.txt
 
       - name: Build MkDocs site
         uses: mhausenblas/mkdocs-deploy-gh-pages@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CUSTOM_DOMAIN: silk.one
+          REQUIREMENTS: requirements.txt
