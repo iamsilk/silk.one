@@ -8,6 +8,7 @@ hide:
 
 | Competition                                      | Placement     | Type               | Team Name        | Date                      | Links                                                                                   |
 | ------------------------------------------------ | ------------- | ------------------ | ---------------- | ------------------------- | --------------------------------------------------------------------------------------- |
+| **DownUnderCTF 2023**                            | 5 / 1424      | Jeopardy           | Team Canada      | Sept 1-3, 2023            | [Link](https://ctftime.org/event/1954)                                                          |
 | **International Cybersecurity Championship**     | 5th           | Jeopardy, A/D      | Team Canada      | Aug 1-4, 2023             | [Link](https://www.ic3.games/)                                                          |
 | **HTB Business CTF 2023: The Great Escape**      | 113 / 699     | Jeopardy           | BCK Security Inc | July 14-16, 2023          | [Link](https://ctftime.org/event/1989)                                                  |
 | **UIUCTF 2023**                                  | 277 / 818     | Jeopardy           | Team Canada      | June 30-July 2, 2023      | [Link](https://ctftime.org/event/1899)                                                  |
