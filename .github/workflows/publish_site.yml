@@ -9,15 +9,18 @@ jobs:
     name: Deploy site
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main
-        uses: actions/checkout@v2
-        
-      - name: Write pm_attr_list to requirements file
-        run: echo "./pm_attr_list/" >> requirements.txt
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
+      - uses: actions/cache@v3
+        with:
+          key: mkdocs-material-${{ env.cache_id }}
+          path: .cache
+          restore-keys: |
+            mkdocs-material-
+      - run: pip install mkdocs-material
+      - run: pip install ./pm_attr_list/
 
-      - name: Build MkDocs site
-        uses: mhausenblas/mkdocs-deploy-gh-pages@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CUSTOM_DOMAIN: silk.one
-          REQUIREMENTS: requirements.txt
+      - run: mkdocs gh-deploy --force
