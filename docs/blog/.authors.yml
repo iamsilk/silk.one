@@ -1,9 +1,10 @@
-silk:
-  name: Stephen White
-  description: Site Owner, Developer, Hacker?
-  avatar: /assets/images/favicon.png
+authors:
+  silk:
+    name: Stephen White
+    description: Site Owner, Developer, Hacker?
+    avatar: /assets/images/favicon.png
 
-matt:
-  name: Matthew Toms-Zuberec
-  description: Pentester, Security Researcher
-  avatar: /assets/images/mtomszuberec.png
+  matt:
+    name: Matthew Toms-Zuberec
+    description: Pentester, Security Researcher
+    avatar: /assets/images/mtomszuberec.png
