@@ -185,12 +185,12 @@ def solve():
     
     # try all possible tags
     for tag in range(0x100):
-        print('New tag:', tag.to_bytes(1).hex())
+        print('New tag:', tag.to_bytes(1, byteorder='big').hex())
         
         # reformat cookies
         cookies = {
             'auth': urllib.parse.quote(b64encode(ciphertext).decode()),
-            'tag': urllib.parse.quote(b64encode(tag.to_bytes(1)).decode()),
+            'tag': urllib.parse.quote(b64encode(tag.to_bytes(1, byteorder='big')).decode()),
             'iv': iv
         }
     
