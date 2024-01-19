@@ -8,6 +8,7 @@ hide:
 
 | Competition                                      | Placement     | Type               | Team Name        | Date                      | Links                                                                                   |
 | ------------------------------------------------ | ------------- | ------------------ | ---------------- | ------------------------- | --------------------------------------------------------------------------------------- |
+| **CyberSci Regionals 2023: Atlantic Region**     | 1st           | Jeopardy, Defense  | Shell We Hack?   | Nov 18, 2023              | [Link](https://cybersecuritychallenge.ca/en/)                                           |
 | **Hackfest Pro CTF 2023**                        | 6th           | Jeopardy           | Shell We Hack?   | Oct 13-14, 2023           | [Link](https://hfctf.ca/en/ctfs/)                                                       |
 | **MapleCTF 2023**                                | 26 / 291      | Jeopardy           | Shell We Hack?   | Sept 29-Oct 1, 2023       | [Link](https://ctftime.org/event/2038)                                                  |
 | **DownUnderCTF 2023**                            | 5 / 1424      | Jeopardy           | Team Canada      | Sept 1-3, 2023            | [Link](https://ctftime.org/event/1954)                                                  |
