@@ -9,7 +9,7 @@ tags:
 comments: true
 ---
 
-# AthackCTF 2024: egyptian-chess
+# AthackCTF 2024: egyptian-chess writeup
 
 **Category:** misc, ppc (professional programming challenges)
 
