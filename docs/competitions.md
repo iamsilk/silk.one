@@ -8,6 +8,11 @@ hide:
 
 | Competition                                      | Placement     | Type               | Team Name        | Date                      | Links                                                                                   |
 | ------------------------------------------------ | ------------- | ------------------ | ---------------- | ------------------------- | --------------------------------------------------------------------------------------- |
+| **CrewCTF 2024**                                 | 1 / 575       | Jeopardy           | idek             | Aug 2-4, 2024             | [Link](https://ctftime.org/event/2223)                                                  |
+| **HITCON CTF 2024 Quals**                        | 1 / 941       | Jeopardy           | Friendly Maltese Citizens | July 12-14, 2024 | [Link](https://ctftime.org/event/2345)                                                  |
+| **Interlogica CTF 2024**                         | 1 / 49        | Jeopardy           | UofTCTF (lol)    | July 5-7, 2024            | [Link](https://ctftime.org/event/2301)                                                  |
+| **CyberSci Nationals 2024**                      | 8 / 12        | Jeopardy, Defense  | Shell We Hack?   | June 21-22, 2022          | [Link](https://cybersecuritychallenge.ca/en/)                                           |
+| **CursedCTF 2024 Quals**                         | 16 / ~275     | Jeopardy           | Shell We Hack?   | Mar 29-31, 2024           | [Link](https://ctftime.org/event/2239)                                                  |
 | **AthackCTF 2024**                               | 2 / 102       | Jeopardy           | Shell We Hack?   | Mar 2-3, 2024             | [Link](https://ctftime.org/event/2228)                                                  |
 | **CyberSci Regionals 2023: Atlantic Region**     | 1st           | Jeopardy, Defense  | Shell We Hack?   | Nov 18, 2023              | [Link](https://cybersecuritychallenge.ca/en/)                                           |
 | **Hackfest Pro CTF 2023**                        | 6th           | Jeopardy           | Shell We Hack?   | Oct 13-14, 2023           | [Link](https://hfctf.ca/en/ctfs/)                                                       |
@@ -18,7 +23,7 @@ hide:
 | **UIUCTF 2023**                                  | 277 / 818     | Jeopardy           | Team Canada      | June 30-July 2, 2023      | [Link](https://ctftime.org/event/1899)                                                  |
 | **BSidesTLV 2023**                               | 34 / 162      | Jeopardy           | Shell We Hack?   | June 26-28, 2023          | [Link](https://ctftime.org/event/2008)                                                  |
 | **Google Capture The Flag 2023**                 | 302 / 676     | Jeopardy           | Shell We Hack?   | June 23-25, 2023          | [Link](https://ctftime.org/event/1929)                                                  |
-| **CyberSci 2023**                                | 5th           | Jeopardy, Defense  | UNBCTF1          | June 1-4, 2023            | [Link](https://cybersecuritychallenge.ca/en/)                                           |
+| **CyberSci Nationals 2023**                      | 5th           | Jeopardy, Defense  | UNBCTF1          | June 1-4, 2023            | [Link](https://cybersecuritychallenge.ca/en/)                                           |
 | **BYUCTF 2023**                                  | 55 / 542      | Jeopardy           | Shell We Hack?   | May 19-21, 2023           | [Link](https://ctftime.org/event/1935)                                                  |
 | **WolvCTF 2023**                                 | 55 / 599      | Jeopardy           | UNBCTF           | March 17-19, 2023         | [Link](https://ctftime.org/event/1866/)                                                 |
 | **IEEEXtreme 16.0**                              | 407 / 2992    | Programming        | RedsCode         | Oct 21-22, 2022           | [Link](https://ieeextreme.org/ieeextreme-16-0-ranking/)                                 |
