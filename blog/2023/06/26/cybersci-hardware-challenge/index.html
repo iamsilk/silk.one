@@ -1,0 +1,1955 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://silk.one/blog/2023/06/26/cybersci-hardware-challenge/">
+      
+      
+      
+        <link rel="next" href="../../28/bsidestlv-2023-compare_me-writeup/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>CyberSci Hardware Challenge - Stephen White | silk.one</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link rel="stylesheet" href="../../../../../assets/stylesheets/custom.min.css">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cybersci-hardware-challenge" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!--
+  Copyright (c) 2016-2023 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine base classes -->
+
+
+
+<!-- Header -->
+<header class="md-header" data-md-component="header">
+  <nav
+    class="md-header__inner md-grid"
+    aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+      href="../../../../.."
+      title="Stephen White | silk.one"
+      class="md-header__button md-logo"
+      aria-label="Stephen White | silk.one"
+      data-md-component="logo"
+    >
+      
+  <img src="../../../../../assets/images/favicon.png" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <!-- Link to home -->
+          <a
+              href="../../../../.."
+              title="Stephen White | silk.one"
+              aria-label="Stephen White | silk.one"
+          >
+            <span class="md-ellipsis">
+              Stephen White | silk.one
+            </span>
+          </a>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CyberSci Hardware Challenge
+            
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette -->
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input
+              class="md-option"
+              data-md-color-media="(prefers-color-scheme)"
+              data-md-color-scheme="default"
+              data-md-color-primary="indigo"
+              data-md-color-accent="indigo"
+              
+                aria-label="Switch to light mode"
+              
+              type="radio"
+              name="__palette"
+              id="__palette_1"
+            />
+            
+              <label
+                class="md-header__button md-icon"
+                title="Switch to light mode"
+                for="__palette_3"
+                hidden
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input
+              class="md-option"
+              data-md-color-media="(prefers-color-scheme: light)"
+              data-md-color-scheme="default"
+              data-md-color-primary="indigo"
+              data-md-color-accent="indigo"
+              
+                aria-label="Switch to dark mode"
+              
+              type="radio"
+              name="__palette"
+              id="__palette_2"
+            />
+            
+              <label
+                class="md-header__button md-icon"
+                title="Switch to dark mode"
+                for="__palette_1"
+                hidden
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input
+              class="md-option"
+              data-md-color-media="(prefers-color-scheme: dark)"
+              data-md-color-scheme="slate"
+              data-md-color-primary="indigo"
+              data-md-color-accent="indigo"
+              
+                aria-label="Switch to system preference"
+              
+              type="radio"
+              name="__palette"
+              id="__palette_3"
+            />
+            
+              <label
+                class="md-header__button md-icon"
+                title="Switch to system preference"
+                for="__palette_2"
+                hidden
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+
+    <!-- Repository information -->
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../projects/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Projects
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../competitions/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Competitions
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../../" class="md-tabs__link">
+          
+  
+  
+  Blog / Writeups
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="Stephen White | silk.one" class="md-nav__button md-logo" aria-label="Stephen White | silk.one" data-md-component="logo">
+      
+  <img src="../../../../../assets/images/favicon.png" alt="logo">
+
+    </a>
+    Stephen White | silk.one
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../competitions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Competitions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog / Writeups
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog / Writeups
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recent Posts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Archive
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Archive
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2024/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2024
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2023/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2023
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Categories
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Categories
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/homelab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    homelab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/writeups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    writeups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-badge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Badge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dumping-the-firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dumping the firmware
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dumping the firmware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-updi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What's UPDI?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interfacing-with-the-badge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interfacing with the badge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#first-attempt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        First Attempt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#second-attempt-success" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Second Attempt: Success!
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reversing-the-firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reversing the firmware
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reversing the firmware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#this-has-evolved-into-a-reversingcrypto-challenge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        This has evolved into a Reversing/Crypto Challenge...
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ghidra-to-the-rescue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ghidra to the rescue?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-analysis-nah-lets-emulate-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static Analysis? Nah. Let's Emulate it!
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-first-clue-references-to-jiggycipher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The First Clue: References to JIGGYCIPHER
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refsjiggy-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RefsJiggy Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RefsJiggy Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loop-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loop 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loop-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loop 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        End
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-functions-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other Functions Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Other Functions Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#init_rng" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        init_rng
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#random_next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        random_next
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write_hex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        write_hex
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solution
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-remarks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Remarks
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="/assets/images/favicon.png" alt="Stephen White">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          Stephen White
+                        
+                      </strong>
+                      <br>
+                      Dev/Security
+                    </span>
+                  </div>
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="/assets/images/mtomszuberec.png" alt="Matthew Toms-Zuberec">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          Matthew Toms-Zuberec
+                        
+                      </strong>
+                      <br>
+                      Pentester, Security Researcher
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2023-06-26 00:00:00+00:00" class="md-ellipsis">June 26, 2023</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/writeups/">writeups</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              19 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+
+
+<h1 id="cybersci-hardware-challenge">CyberSci Hardware Challenge</h1>
+<p>A copy of this writeup is written in the <a href="https://github.com/UNBCTF/writeups/blob/main/Challenges/2023/cybersci2023/hardware-challenge/hardware-challenge.md">UNBCTF's writeups repository</a>.</p>
+<p><strong>Difficulty:</strong> Medium/Hard</p>
+<p>The objective of the challenge is to dump the firmware from the provided hardware badge and reverse engineer it. In theory this is quite easy, however it took quite some time to get familiar with the AVR architecture and instruction set.</p>
+<p><strong>Hints:</strong> <em>If you're just starting out, ask Jeff Bezos for help. If you're near the end, ask Jeff Bezos for help.</em></p>
+<p><strong>Attachments:</strong> <a href="../../../../cybersci2023/hardware-challenge/attachments/flash.hex"><em>flash.hex</em></a>, <a href="../../../../cybersci2023/hardware-challenge/attachments/sram.hex"><em>sram.hex</em></a>, <a href="../../../../cybersci2023/hardware-challenge/attachments/eeprom.hex"><em>eeprom.hex</em></a></p>
+<p>(<em>these attachments were not provided, and had to be recovered as part of the challenge</em>)</p>
+<p><strong>Solution:</strong> <a href="../../../../cybersci2023/hardware-challenge/attachments/asd.py"><em>asd.py</em></a></p>
+<h2 id="the-badge">The Badge</h2>
+<p><img alt="Front of hardware badge" src="../../../../cybersci2023/hardware-challenge/images/CircuitBoard_Front.jpg" /></p>
+<!-- more -->
+
+<p><img alt="Back of hardware badge" src="../../../../cybersci2023/hardware-challenge/images/CircuitBoard_Back.jpg" />
+(ignore the soldering, that will come later)</p>
+<p>Upon inital inspection we can see the board has been nicely labelled for us. There is also a small push button, a power switch, some LED's/resistors, and an IC chip present.</p>
+<p>When powered on, the badge will cycle through different light patterns each time the small push button is pressed. </p>
+<p>The lights didn't seem to provide a pattern - that would be too easy. So we know the challenge must be hidden in the firmware.</p>
+<p><img alt="Picture of the ATTiny1614 Microchip" src="../../../../cybersci2023/hardware-challenge/images/TINY1614N.jpg" /></p>
+<p>The chip has some small writing on the casing, and we can make out "TINY1614N". Googling around for it quickly reveals <a href="http://atmel-studio-doc.s3-website-us-east-1.amazonaws.com/webhelp/GUID-C541EA24-5EC3-41E5-9648-79068F9853C0-en-US-3/index.html?GUID-80E49755-C75C-4135-83B6-F7A7926186F8">the documentation</a> (hosted on AWS, hence the hint), which explains that we can interact with it via the UPDI (Unified Program and Debug Interface).</p>
+<h2 id="dumping-the-firmware">Dumping the firmware</h2>
+<h3 id="whats-updi">What's UPDI?</h3>
+<p>Taken straight from the documentation: UPDI is a Microchip TM (formerly Atmel) proprietary interface for external programming and on-chip debugging of a device. </p>
+<p>It operates over a one-wire interface, so other than hooking up GND and VCC (the power supply), there is minimal setup required.</p>
+<h3 id="interfacing-with-the-badge">Interfacing with the badge</h3>
+<p>Luckily, the challenge creator (<a href="https://www.loudmouth.io/">Loudmouth Security</a>) graciously connected the UPDI pinout into the single wire interface for us, so other than connecting GND and VCC we don't have to do much more for setup.</p>
+<p>After conducting some research, tools such as <a href="https://github.com/avrdudes/avrdude"><code>avr-dude</code></a> and <a href="https://github.com/Polarisru/updiprog"><code>updiprog</code></a> quickly became of interest as they seemed to be capable of dumping the firmware.</p>
+<h3 id="first-attempt">First Attempt</h3>
+<p>Originally, it was thought that an Arduino Uno (or alike) could be converted into a USB to TTL (aka serial) adapter to enable communication with the chip.</p>
+<p>After reading several guides of people looking to program various chips via UPDI, the following schematic seemed to be accurate.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>                        VCC       (3.3v)        VCC
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                         +-----------------------+
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                         |                       |
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a> +---------------------+ |                       | +--------------------+
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a> | Serial Adapter      +-+      Resistor         +-+  AVR device        |
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a> |                     |      +----------+         |                    |
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a> |                  TX +------+ 1k OHM   +---------+ UPDI               |
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a> |                     |      +----------+    |    |                    |
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a> |                     |                      |    |                    |
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a> |                  RX +----------------------+    |                    |
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a> |                     |                           |                    |
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a> |                     +--+                     +--+                    |
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a> +---------------------+  |                     |  +--------------------+
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>                          +---------------------+
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>                         GND                   GND
+</span></code></pre></div>
+<p>However, communication using an Arduino was unsuccessful for various reasons. </p>
+<p>Rather than wasting time trying to mimic the required chipset, <a href="https://www.amazon.ca/dp/B07WX2DSVB">this adapter</a> was purchased off Amazon for around $20 CAD. Yet another reference to asking Jeff Bezos for help.</p>
+<p>Any USB to TTL UART adapter may be equally likely to work, we simply used the adapter linked above. A <a href="https://www.amazon.ca/s?k=usb+to+ttl+uart">search for "USB to TTL UART" on Amazon</a> returns plenty of valid results.</p>
+<h3 id="second-attempt-success">Second Attempt: Success!</h3>
+<p>After an agonizing couple days wait (we were excited!), the adapter arrived and necessary drivers were installed. There were issues with <a href="https://github.com/avrdudes/avrdude"><code>avr-dude</code></a> and <a href="https://github.com/Polarisru/updiprog"><code>updiprog</code></a>, so a switch to <a href="https://pypi.org/project/pymcuprog/"><code>pymcuprog</code></a> was made.</p>
+<p>We setup the same circuit as above on a breadboard, and are now ready to try dumping the firmware.</p>
+<p><img alt="Circuit board, ready to go!" src="../../../../cybersci2023/hardware-challenge/images/CircuitBoard_HookedUp.jpg" /></p>
+<p>To test the connection, UPDI offers "ping" like functionality.</p>
+<p><strong>Note: <code>pymcuprog</code> is the recommend tool to use as many others are outdated and slow.</strong></p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pymcuprog ping -d attiny1614 -t uart -u COM6
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Connecting to SerialUPDI
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Pinging device...
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Ping response: 1E9422
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Done.
+</span></code></pre></div>
+Hurray! We can now talk to the device.</p>
+<p>We want to dump both the firmware (the code), the EEPROM, and the SRAM (memory), as there may be valuable information in each.</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>pymcuprog read -m flash -d attiny1614 -t uart -u COM6 -f flash.hex
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>pymcuprog read -m eeprom -d attiny1614 -t uart -u COM8 -f eeprom.hex
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>pymcuprog read -m internal_sram -d attiny1614 -t uart -u COM6 -f sram.hex
+</span></code></pre></div></p>
+<p>Both of us were on opposite sides of Canada as we solved this. One of us (Stephen) had access to an Arduino kit with plenty of resistors. Matt, on the other hand, resorted to.. <em>other measures</em>.</p>
+<p>The PCB from an old mini fridge had to be sacrificed to use a specific resistor, and made quite the interesting setup. But it worked!</p>
+<p><img alt="PCB Setup" src="../../../../cybersci2023/hardware-challenge/images/SalvagingFromPCB.jpg" /></p>
+<h2 id="reversing-the-firmware">Reversing the firmware</h2>
+<p>Before we can try reversing, we need to convert the files from intel hex into a binary format.</p>
+<p>This can be done with the following tool:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>avr-objcopy -I ihex -O binary flash.hex flash.bin
+</span></code></pre></div>
+<p>As mandated by CTF lore, <code>strings</code> was ran first and the following was spit out:</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>$<span class="w"> </span>strings<span class="w"> </span>flash.bin
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>...
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>0123456789abcdef
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>JIGGYCIPHER<span class="o">{</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>JIGGYCIPHER<span class="o">{</span>a1557d3801d7723f3d385111d85cd125625cc260ba76d3051a5de6ff24786b8fc70c1659aa4c41b9151c8eef70d438515a6642562ab9f0403f276ba556a7429829433d2572484f2585719d468964832ab1a258521f568165c3ab1bead146ecd2de65a5d812b53ca5c168473bac895d4a8bc37390f860b11e6a6eb442c249180a9c337285455ab098d47b7264ec42bed7688d59dcdfddcf3d0de674356cbee22547e087c63be52013dc319600c4a4859788ab87349c6c81ea9598127f87093c148c1d3e94edea50132f324eaf5cc88b63b8fac20cf6<span class="o">}</span>
+</span></code></pre></div>
+<p>Hurrah! We got our flag! Should be some simple cipher now and we'll be done.. right? Unfortunately, no. Little did we know, we had only solved the easy part.</p>
+<p>SRAM and EEPROM were also quickly looked at in a hex editor. SRAM contained content but it was mostly binary, no text. EEPROM was quickly ruled out of having anything important as it was mostly 1s.</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$<span class="w"> </span>xxd<span class="w"> </span>sram.bin
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="m">00000000</span>:<span class="w"> </span>b98f<span class="w"> </span>ca8f<span class="w"> </span>d78f<span class="w"> </span><span class="m">0100</span><span class="w"> </span><span class="m">0054</span><span class="w"> </span>6f57<span class="w"> </span>de1f<span class="w"> </span>93ff<span class="w">  </span>.........ToW....
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="m">00000010</span>:<span class="w"> </span>e0fe<span class="w"> </span>2ede<span class="w"> </span>feb2<span class="w"> </span>3f7b<span class="w"> </span>ad7f<span class="w"> </span>73d3<span class="w"> </span>df15<span class="w"> </span>3eff<span class="w">  </span>......?<span class="o">{</span>..s...&gt;.
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="m">00000020</span>:<span class="w"> </span>7e2f<span class="w"> </span>b78b<span class="w"> </span>cf8a<span class="w"> </span>4cde<span class="w"> </span>57ae<span class="w"> </span>fbaa<span class="w"> </span>e267<span class="w"> </span>bffd<span class="w">  </span>~/....L.W....g..
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>...
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>$<span class="w"> </span>xxd<span class="w"> </span>eeprom.bin
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="m">00000000</span>:<span class="w"> </span><span class="m">0081</span><span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w">  </span>................
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="m">00000010</span>:<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w">  </span>................
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="m">00000020</span>:<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w">  </span>................
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="m">00000030</span>:<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w"> </span>ffff<span class="w">  </span>................
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>...
+</span></code></pre></div>
+<h3 id="this-has-evolved-into-a-reversingcrypto-challenge">This has evolved into a Reversing/Crypto Challenge...</h3>
+<p>Any attempt to try and decode this using known ciphers fails, and performing frequency analysis yields no promising results.</p>
+<p>Maybe there is some sort of encryption routine in the firmware!</p>
+<h3 id="ghidra-to-the-rescue">Ghidra to the rescue?</h3>
+<p>Ghidra does support the AVR architecture, however there is no direct support for the ATTINY1614 CPU.</p>
+<p>After reading the documentation, we found that the language was <code>AVR8:Little Endian:16 Bit</code> and it was compiled with GCC (uses <code>avr-libc</code>).</p>
+<p><img alt="Ghidra AVR Languages" src="../../../../cybersci2023/hardware-challenge/images/GhidraAVRLanguages.jpg" /></p>
+<p><img alt="Block Diagram" src="../../../../cybersci2023/hardware-challenge/images/TinyAVRBlockDiagram.jpg" /></p>
+<p>The SRAM and EEPROM dumps were added into the analysis of the flash in Ghidra via <code>File &gt; Import File</code>. Using <code>Options...</code>, we could specify the address of the imported file, and input the real addresses of the dumps:
+* EEPROM: <code>0x1400 - 0x14FF</code>
+* SRAM: <code>0x3800 - 0x3FFF</code>
+* Flash: <code>0x8000 - ...</code></p>
+<p><img alt="Memory Map" src="../../../../cybersci2023/hardware-challenge/images/MemoryMap.jpg" /></p>
+<p>After importing the SRAM and EEPROM dumps and adjusting the memory mapping, the disassembly was still very hard to read. Ghidra's decompiler couldn't handle AVR, and after some time, we noticed some of the instructions were simply wrong (see below: Radare2 on top vs. Ghidra on bottom). Purely static analysis was also difficult, as we had no way to simulate the code. Ghidra has no emulator for AVR.</p>
+<p><img alt="Ghidra incorrect instructions" src="../../../../cybersci2023/hardware-challenge/images/Radare2GhidraComparison.jpg" /></p>
+<h3 id="static-analysis-nah-lets-emulate-it">Static Analysis? Nah. Let's Emulate it!</h3>
+<p>There are few ways emulation can be done, however, <a href="https://github.com/rizinorg/cutter">Cutter</a> was used as it was super user-friendly and only required a simple installation.</p>
+<p><a href="https://github.com/buserror/simavr">simavr</a> was another tool we tried, but it requires you to build/define custom core for emulation. We tried, at first, but Cutter seemed much simpler so we pivoted.</p>
+<h3 id="the-first-clue-references-to-jiggycipher">The First Clue: References to JIGGYCIPHER</h3>
+<p>Despite its flaws, Ghidra did have some nice features that Cutter lacked, and it provided us with our first clue.</p>
+<p>When looking at references to the SRAM in Ghidra, we can see a lot of references to the first eight bytes:</p>
+<p><img alt="Ghidra SRAM References" src="../../../../cybersci2023/hardware-challenge/images/GhidraSRAMReferences.jpg" /></p>
+<p>It took us a while to realize, but the contents of the SRAM at <code>x3800</code>, <code>x3802</code>, and <code>x3804</code> were addresses to the strings we saw before in little-endian format:</p>
+<ul>
+<li><code>x3800</code>: <code>8fb9</code></li>
+<li><code>x3802</code>: <code>8fca</code></li>
+<li><code>x3804</code>: <code>8fd7</code></li>
+</ul>
+<p>Cutter mounts the flash at <code>x0000</code> instead of <code>x8000</code>, so we need to subtract <code>x8000</code> from each of these addresses in order to view the correct location. But when we do, we can see:</p>
+<ul>
+<li><code>0x0fb9</code>: <code>0123456789abcdef</code></li>
+<li><code>0x0fca</code>: <code>JIGGYCIPHER{</code></li>
+<li><code>0x0fd7</code>: <code>JIGGYCIPHER{...}</code></li>
+</ul>
+<p><img alt="Cutter strings" src="../../../../cybersci2023/hardware-challenge/images/CutterStrings.jpg" /></p>
+<p>Why did we have to look up the strings in Cutter? Ghidra's addresses seemed mismatched from Cutter's, but Cutter's made more sense given the context.</p>
+<p>Changing the data types to pointers allows us to see references to each individual string. By investigating each reference to the strings, we see a reference to <code>JIGGYCIPHER{</code> (<code>0x3802</code>) from <code>FUN_code_81e9</code>.</p>
+<p><img alt="Ghidra SRAM References by Pointers" src="../../../../cybersci2023/hardware-challenge/images/GhidraSRAMReferencesPointer.jpg" /></p>
+<p>Then, using the instructions, we can search for the function in Cutter. It turns out the function is at <code>0x03d2</code>, but it is not defined as a function. Oh well, we can define it ourselves. Let's name it <code>refs_jiggy</code> as it references <code>JIGGYCIPHER{</code>.</p>
+<p><img alt="RefsJiggy Defined" src="../../../../cybersci2023/hardware-challenge/images/RefsJiggyDefined.jpg" /></p>
+<p>By switching to graph view, we can get a general idea of the function's working. We can see there is some init phase, followed by loop 1, then  loop 2, and finally the end of the function. Let's start analyzing what this function does.</p>
+<p><img alt="RefsJiggy Graph" src="../../../../cybersci2023/hardware-challenge/images/RefsJiggyGraph.jpg" /></p>
+<h3 id="refsjiggy-analysis">RefsJiggy Analysis</h3>
+<h4 id="start">Start</h4>
+<p>Let's start by analyzing the first block. We start by breaking it up into it's pieces.</p>
+<p><img alt="RefsJiggy Init" src="../../../../cybersci2023/hardware-challenge/images/RefsJiggyInit.jpg" /></p>
+<ol>
+<li>This block starts by preserving some registers on the stack.</li>
+<li>Allocates 0x34 (52) places on the stack.</li>
+<li>Loading something from data space addresses <code>0x7d</code>, <code>0x7e</code>, <code>0x7f</code>?? It turns out these instructions were incorrectly decompiled by Cutter (and Ghidra). The correct instructions have been commented in the version on the right.</li>
+<li>
+<p>Storing some registers in the stack. These are likely input parameters for the function, There are eight input registers, but AVR uses register pairs for two-byte words. So there are likely four input parameters. We will start a table, and update it as we move along and uncover some of their purposes.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Input Registers</th>
+<th>Stack Location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>unknown</em></td>
+<td><code>r25:r24</code></td>
+<td><code>Y+46,Y+45</code></td>
+</tr>
+<tr>
+<td><em>unknown</em></td>
+<td><code>r23:r22</code></td>
+<td><code>Y+48,Y+47</code></td>
+</tr>
+<tr>
+<td><em>unknown</em></td>
+<td><code>r21:r20</code></td>
+<td><code>Y+50,Y+49</code></td>
+</tr>
+<tr>
+<td><em>unknown</em></td>
+<td><code>r19:r18</code></td>
+<td><code>Y+52,Y+51</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Loads the pointer from address <code>0x3802</code> into <code>r25:r24</code>. We know the pointer at address <code>0x3802</code> is <code>0x0fca</code>, which points to <code>JIGGYCIPHER{</code>. Then this part calls some function at <code>0x0f82</code>, which after some quick analysis seems to be a string length function. Then some registers are stored on the stack, probably the return values from <code>string_len</code>.</p>
+<p><img alt="String Length Function" src="../../../../cybersci2023/hardware-challenge/images/StringLen.jpg" /></p>
+</li>
+<li>
+<p>The pointer at address <code>0x3802</code> is loaded into <code>r25:r24</code> again, and is also stored on the stack.</p>
+</li>
+<li>
+<p><code>r1</code> is stored into <code>Y+3</code> and <code>Y+4</code> on the stack? Turns out, <code>r1</code> is used in this compilation as zero many times. So this part is simply setting those places on the stack to zero.</p>
+</li>
+</ol>
+<p>So far, it seems like the start phase stores some input parameters onto the stack and gets the length of the <code>JIGGYCIPHER{</code> string.</p>
+<h4 id="loop-1">Loop 1</h4>
+<p>Now moving onto Loop 1.</p>
+<p><img alt="RefsJiggy Loop 1" src="../../../../cybersci2023/hardware-challenge/images/RefsJiggyLoop1.jpg" /></p>
+<ol start="8">
+<li>
+<p>Loads some values from the stack. Referencing the start phase, we can tell <code>Y+9,Y+8</code> is the length of the <code>JIGGYCIPHER{</code> string. Also <code>Y+4,Y+3</code> starts as zero, and is probably the incremented variable (<code>i</code>) of this loop.</p>
+</li>
+<li>
+<p>Compares <code>i</code> against <code>string_len('JIGGYCIPHER{')</code>. If <code>i</code> is less than the string length, it continues the loop.</p>
+</li>
+<li>
+<p>Loads some value from <code>Y+52,Y+51</code>, increments by one, and saves back on the stack. The value (before being incremented) is stored in <code>r25:r24</code>.</p>
+</li>
+<li>
+<p>Loads some value from <code>Y+2,Y+1</code>, increments by one, and saves back on the stack. The value (before being incremented) is stored in <code>r19:r18</code>.</p>
+</li>
+<li>
+<p>Loads a byte from the address stored in <code>r19:r18</code> into register <code>r18</code>. Then it saves the byte in <code>r18</code> into the address stored in <code>r25:r24</code>. This is effectively copying a byte from the address in <code>r19:r18</code> to the address in <code>r25:r24</code>.</p>
+</li>
+<li>
+<p>Increments <code>i</code> by one and return to step 8.</p>
+</li>
+</ol>
+<p>So it seems Loop 1 is copying the <code>JIGGYCIPHER{</code> string to some target address stored in <code>Y+52,Y+51</code>. It is important to note that Loop 1 is copying the <strong>prefix</strong> of JIGGYCIPHER, not the full flag-like string we saw before. As its copying the prefix, we can assume this is a function <em>generating</em> the flag-like string.</p>
+<p>We know the generated string is being stored in the address in <code>Y+52,Y+51</code> which was one of our input parameters. Let's rename the entry in our parameter table to <code>output_string</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Input Registers</th>
+<th>Stack Location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>unknown</em></td>
+<td><code>r25:r24</code></td>
+<td><code>Y+46,Y+45</code></td>
+</tr>
+<tr>
+<td><em>unknown</em></td>
+<td><code>r23:r22</code></td>
+<td><code>Y+48,Y+47</code></td>
+</tr>
+<tr>
+<td><em>unknown</em></td>
+<td><code>r21:r20</code></td>
+<td><code>Y+50,Y+49</code></td>
+</tr>
+<tr>
+<td><code>output_string</code></td>
+<td><code>r19:r18</code></td>
+<td><code>Y+52,Y+51</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="loop-2">Loop 2</h4>
+<p>Moving onto Loop 2.</p>
+<p><img alt="RefsJiggy Loop 2.1" src="../../../../cybersci2023/hardware-challenge/images/RefsJiggyLoop2_1.jpg" />
+<img alt="RefsJiggy Loop 2.2" src="../../../../cybersci2023/hardware-challenge/images/RefsJiggyLoop2_2.jpg" /></p>
+<ol start="14">
+<li>
+<p>Set <code>Y+5</code> stack value to zero.</p>
+</li>
+<li>
+<p>This step puts the address <code>Y+0x0c</code> into <code>r25:r24</code>. This address is then passed to the <code>init_rng</code> function. Refer to the <a href="#init_rng"><code>init_rng</code></a> section to see how we reversed this function.</p>
+<p>Basically, <code>init_rng</code> takes an input address and copies the bytes <code>02050DFFFF0000AD8B0000050B0BFFFF00000DF000000E0D0FCAFFFFFFFFBEBAFECA</code> to the address. These bytes act as the initial state (or seed) of the <code>random_next</code> function we will see later.</p>
+<p>Knowing now how this <code>init_rng</code> function works, we can see this step is copying the RNG's seed into the stack for later usage.</p>
+</li>
+<li>
+<p>Set <code>Y+7,Y+6</code> stack values to zero.</p>
+</li>
+<li>
+<p>Loads <code>Y+7,Y+6</code> from the stack. From step 16, we can see <code>Y+7,Y+6</code> start as zero, so this is probably the increment value <code>i</code> in this loop. </p>
+</li>
+<li>
+<p>Loads <code>Y+46,Y+45</code> from the stack. From our input parameters, we can tell <code>Y+46,Y+45</code> is an input parameter. So it must be some sort of count or length. Let's call it <code>length</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Input Registers</th>
+<th>Stack Location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>length</code></td>
+<td><code>r25:r24</code></td>
+<td><code>Y+46,Y+45</code></td>
+</tr>
+<tr>
+<td><em>unknown</em></td>
+<td><code>r23:r22</code></td>
+<td><code>Y+48,Y+47</code></td>
+</tr>
+<tr>
+<td><em>unknown</em></td>
+<td><code>r21:r20</code></td>
+<td><code>Y+50,Y+49</code></td>
+</tr>
+<tr>
+<td><code>output_string</code></td>
+<td><code>r19:r18</code></td>
+<td><code>Y+52,Y+51</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Compares <code>i</code> against <code>length</code>. If <code>i</code> is less than <code>length</code>, it continues the loop.</p>
+</li>
+<li>
+<p>Loads some value from <code>Y+50,Y+49</code>, increments by one, and saves back on the stack. The value (before being incremented) is stored in <code>r25:r24</code>.</p>
+</li>
+<li>
+<p>Loads a byte from the address stored in <code>r25:r24</code> into register <code>r24</code> and then saves it on the stack at <code>Y+10</code>.</p>
+</li>
+<li>
+<p>Loads some value from <code>Y+50,Y+49</code>, increments by one, and saves back on the stack. The value (before being incremented) is stored in <code>r25:r24</code>.</p>
+</li>
+<li>
+<p>Loads a byte from the address stored in <code>r25:r24</code> into register <code>r24</code> and then saves it on the stack at <code>Y+11</code>.</p>
+<p>Notice that steps 20 and 21 or nearly identical to 22 and 23? The only difference is bytes being saved to <code>Y+10</code> versus <code>Y+11</code>. This collection of steps seems to be reading some characters from the string who's address is stored in <code>Y+50,Y+49</code>. This is also an input parameter, so let's call it <code>input_string</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Input Registers</th>
+<th>Stack Location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>length</code></td>
+<td><code>r25:r24</code></td>
+<td><code>Y+46,Y+45</code></td>
+</tr>
+<tr>
+<td><em>unknown</em></td>
+<td><code>r23:r22</code></td>
+<td><code>Y+48,Y+47</code></td>
+</tr>
+<tr>
+<td><code>input_string</code></td>
+<td><code>r21:r20</code></td>
+<td><code>Y+50,Y+49</code></td>
+</tr>
+<tr>
+<td><code>output_string</code></td>
+<td><code>r19:r18</code></td>
+<td><code>Y+52,Y+51</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Loads the values at <code>Y+5</code> and <code>Y+10</code> from the stack and XORs them. The result is stored on the stack at <code>Y+5</code>. <code>Y+5</code> was set to zero in step 14.</p>
+</li>
+<li>
+<p>Loads some value from <code>Y+48,Y+47</code>, increments by one, and saves back on the stack. The value (before being incremented) is stored in <code>r25:r24</code>.</p>
+</li>
+<li>
+<p>Loads a byte from the address stored in <code>r25:r24</code> into register <code>r25</code>. The byte at <code>Y+11</code> is then loaded. These two bytes are then XORed together and the result is stored in <code>r17</code>.</p>
+<p>The first byte is loaded from <code>Y+48,Y+47</code>, much like bytes were loaded in the previous steps. <code>Y+48,Y+47</code> is a input parameter, and seems to be another input string, so we will call it <code>input_string_2</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Input Registers</th>
+<th>Stack Location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>length</code></td>
+<td><code>r25:r24</code></td>
+<td><code>Y+46,Y+45</code></td>
+</tr>
+<tr>
+<td><code>input_string_2</code></td>
+<td><code>r23:r22</code></td>
+<td><code>Y+48,Y+47</code></td>
+</tr>
+<tr>
+<td><code>input_string</code></td>
+<td><code>r21:r20</code></td>
+<td><code>Y+50,Y+49</code></td>
+</tr>
+<tr>
+<td><code>output_string</code></td>
+<td><code>r19:r18</code></td>
+<td><code>Y+52,Y+51</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>A function, which we renamed to <code>random_next</code>, is called with an input parameter of the address <code>Y+0x0c</code>. Recall that in step 15, a string of bytes were loaded into this address. Refer to the <a href="#random_next"><code>random_next</code></a> section to see how we reversed this function.</p>
+<p>Basically, <code>random_next</code> generates a random byte and stores it in <code>r24</code>. This random byte is dependent on its state, which is stored on the stack at <code>Y+0x0c</code>. The initial seed of this random number generator was loaded in step 15.</p>
+<p>Knowing now how this <code>random_next</code> function works, we can see this step is generating a random byte and storing it in <code>r24</code>.</p>
+</li>
+<li>
+<p>The random byte and <code>r17</code> are XORed and the result is stored in <code>r18</code>. Recall that <code>r17</code> was set in step 26.</p>
+</li>
+<li>
+<p>A function is called with an input parameter of the address <code>Y+0x33</code> (<code>Y+51</code> in decimal), which contains the address for our output string. Refer to the <a href="#write_hex"><code>write_hex</code></a> section to see how we reversed this function.</p>
+<p>Basically, <code>write_hex</code> receives an input byte in the register <code>r22</code>, converts it to its two hex characters, and writes these characters to the string's address stored in <code>r25:r24</code>.</p>
+<p>Knowing how <code>write_hex</code> works, we can see it is writing the byte stored in <code>r18</code> to the <code>output_string</code>. This byte's value was determined in the previous step.</p>
+</li>
+<li>
+<p>Loads <code>Y+11</code> and <code>Y+5</code> from the stack. These values are then XORed and the result is stored in <code>r17</code>.</p>
+</li>
+<li>
+<p><code>random_next</code> is called and the random byte is stored in <code>r24</code>.</p>
+</li>
+<li>
+<p>The random byte in <code>r24</code> (from step 31) and the byte in <code>r17</code> (step 30) are XORed and the result is stored in <code>r18</code>.</p>
+</li>
+<li>
+<p><code>write_hex</code> is called and the byte stored in <code>r18</code> is written the the <code>output_string</code>.</p>
+</li>
+<li>
+<p><code>random_next</code> is called and the random byte is stored in <code>r24</code>.</p>
+</li>
+<li>
+<p>Loads a byte <code>Y+10</code> from the stack into <code>r24</code>. Recall this byte was last written to in step 21, and is a character from <code>input_string</code>. This byte is then XORed against <code>r24</code> (the random byte from step 34) and the result is stored in <code>r18</code>.</p>
+</li>
+<li>
+<p><code>write_hex</code> is called and the byte stored in <code>r18</code> is written the the <code>output_string</code>.</p>
+</li>
+<li>
+<p>Increments <code>i</code> by one and return to step 17.</p>
+</li>
+</ol>
+<p>A lot happened in this loop. Let's recap:</p>
+<ul>
+<li>Two characters were read from <code>input_string</code>.</li>
+<li>One character was read from <code>input_string_2</code>.</li>
+<li><code>write_hex</code> was called three times, outputting three bytes (six characters) to <code>output_string</code>.</li>
+<li>Each byte that was written was encrypted in a different way, through a series of XORs against other bytes and random bytes.</li>
+</ul>
+<h4 id="end">End</h4>
+<ol>
+<li>
+<p>Loads the <code>output_string</code> address from the stack, increments it by one, and stores it on the stack. The address before being incremented is stored in <code>r25:r24</code>.</p>
+</li>
+<li>
+<p>A byte with value <code>0x7d</code> is written the <code>output_string</code> address from step 38. A quick ASCII table lookup shows this byte is the <code>}</code> character, the end of the JIGGYCIPHER.</p>
+</li>
+<li>
+<p>Loads the <code>output_string</code> address from the stack and stores <code>r1</code>'s value into it. <code>r1</code> is always zero, and so this step is putting the null-terminator onto the <code>output_string</code>.</p>
+</li>
+<li>
+<p>Restores the stack and pushed registers before returning from the function.</p>
+</li>
+</ol>
+<p>So the end of this function adds the <code>}</code> character and a null-terminator to the end of the string, then returns.</p>
+<h3 id="other-functions-analysis">Other Functions Analysis</h3>
+<p>These functions are planned to be explained, but for now we have omitted writing their analysis so we can share this writeup sooner rather than later.</p>
+<h4 id="init_rng">init_rng</h4>
+<h4 id="random_next">random_next</h4>
+<h4 id="write_hex">write_hex</h4>
+<h2 id="solution">Solution</h2>
+<p>If you don't want to read the full solution, feel free to spoil yourself: <a href="../../../../cybersci2023/hardware-challenge/attachments/asd.py">asd.py</a></p>
+<p>Working our way bottom-up, we need to first mimic the random number generator so we can generate the same random numbers that were used to encrypt the plaintext.</p>
+<div class="language-py highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Build our RNG storage from the bytes recovered from the flash.</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">build_triplets</span><span class="p">():</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="n">triplets</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="n">triplets_bytes</span> <span class="o">=</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="s2">&quot;02 05 0D FF FF 00 00 AD 8B 00 00 05 0B 0B FF FF 00 00 0D F0 00 00 0E 0D 0F FF FF FF FF BE BA FE CA&quot;</span><span class="p">)</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>        <span class="n">triplet_bytes</span> <span class="o">=</span> <span class="n">triplets_bytes</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">11</span><span class="p">:</span><span class="n">i</span><span class="o">*</span><span class="mi">11</span><span class="o">+</span><span class="mi">11</span><span class="p">]</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>        <span class="n">shifts</span> <span class="o">=</span> <span class="p">[</span><span class="n">triplet_bytes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">triplet_bytes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">triplet_bytes</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>        <span class="n">mask</span> <span class="o">=</span> <span class="n">triplet_bytes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">triplet_bytes</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">triplet_bytes</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">triplet_bytes</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">24</span><span class="p">)</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>        <span class="n">gen</span> <span class="o">=</span> <span class="n">triplet_bytes</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">triplet_bytes</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">triplet_bytes</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">triplet_bytes</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">24</span><span class="p">)</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>        <span class="n">triplets</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">shifts</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">gen</span><span class="p">])</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>    <span class="k">return</span> <span class="n">triplets</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="c1"># Get the next bit for a given triplet</span>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="k">def</span><span class="w"> </span><span class="nf">triplet_bit</span><span class="p">(</span><span class="n">triplet</span><span class="p">):</span>
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>    <span class="n">shifts</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">gen</span> <span class="o">=</span> <span class="n">triplet</span>
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>    <span class="c1"># shifts = Z0-2</span>
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>    <span class="c1"># mask = Z3-6</span>
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a>    <span class="c1"># gen = Z7-10</span>
+</span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a>
+</span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a>    <span class="n">next_gen</span> <span class="o">=</span> <span class="n">gen</span>
+</span><span id="__span-9-25"><a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a>
+</span><span id="__span-9-26"><a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a>    <span class="n">shift</span> <span class="o">=</span> <span class="n">shifts</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span><span id="__span-9-27"><a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a>    <span class="n">next_gen</span> <span class="o">=</span> <span class="p">((</span><span class="n">next_gen</span> <span class="o">&gt;&gt;</span> <span class="n">shift</span><span class="p">)</span> <span class="o">^</span> <span class="n">next_gen</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">mask</span>
+</span><span id="__span-9-28"><a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a>
+</span><span id="__span-9-29"><a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a>    <span class="n">shift</span> <span class="o">=</span> <span class="n">shifts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="__span-9-30"><a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a>    <span class="n">next_gen</span> <span class="o">=</span> <span class="p">((</span><span class="n">next_gen</span> <span class="o">&gt;&gt;</span> <span class="n">shift</span><span class="p">)</span> <span class="o">^</span> <span class="n">next_gen</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">mask</span>
+</span><span id="__span-9-31"><a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a>
+</span><span id="__span-9-32"><a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a>    <span class="n">shift</span> <span class="o">=</span> <span class="n">shifts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span id="__span-9-33"><a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a>    <span class="n">next_gen</span> <span class="o">=</span> <span class="p">((</span><span class="n">next_gen</span> <span class="o">&lt;&lt;</span> <span class="n">shift</span><span class="p">)</span> <span class="o">^</span> <span class="n">next_gen</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">mask</span>
+</span><span id="__span-9-34"><a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a>
+</span><span id="__span-9-35"><a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a>    <span class="n">triplet</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">next_gen</span>
+</span><span id="__span-9-36"><a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a>
+</span><span id="__span-9-37"><a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a>    <span class="k">return</span> <span class="n">next_gen</span> <span class="o">&amp;</span> <span class="mi">1</span>
+</span><span id="__span-9-38"><a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a>
+</span><span id="__span-9-39"><a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a><span class="c1"># Get the next bit for the three triplets</span>
+</span><span id="__span-9-40"><a id="__codelineno-9-40" name="__codelineno-9-40" href="#__codelineno-9-40"></a><span class="k">def</span><span class="w"> </span><span class="nf">next_bit</span><span class="p">(</span><span class="n">triplets</span><span class="p">):</span>    
+</span><span id="__span-9-41"><a id="__codelineno-9-41" name="__codelineno-9-41" href="#__codelineno-9-41"></a>    <span class="n">a</span> <span class="o">=</span> <span class="n">triplet_bit</span><span class="p">(</span><span class="n">triplets</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</span><span id="__span-9-42"><a id="__codelineno-9-42" name="__codelineno-9-42" href="#__codelineno-9-42"></a>    <span class="n">b</span> <span class="o">=</span> <span class="n">triplet_bit</span><span class="p">(</span><span class="n">triplets</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span id="__span-9-43"><a id="__codelineno-9-43" name="__codelineno-9-43" href="#__codelineno-9-43"></a>    <span class="n">c</span> <span class="o">=</span> <span class="n">triplet_bit</span><span class="p">(</span><span class="n">triplets</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span><span id="__span-9-44"><a id="__codelineno-9-44" name="__codelineno-9-44" href="#__codelineno-9-44"></a>
+</span><span id="__span-9-45"><a id="__codelineno-9-45" name="__codelineno-9-45" href="#__codelineno-9-45"></a>    <span class="c1"># something_something</span>
+</span><span id="__span-9-46"><a id="__codelineno-9-46" name="__codelineno-9-46" href="#__codelineno-9-46"></a>    <span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">b</span> <span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">a</span> <span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span>
+</span><span id="__span-9-47"><a id="__codelineno-9-47" name="__codelineno-9-47" href="#__codelineno-9-47"></a>
+</span><span id="__span-9-48"><a id="__codelineno-9-48" name="__codelineno-9-48" href="#__codelineno-9-48"></a>    <span class="k">return</span> <span class="n">s</span>
+</span><span id="__span-9-49"><a id="__codelineno-9-49" name="__codelineno-9-49" href="#__codelineno-9-49"></a>
+</span><span id="__span-9-50"><a id="__codelineno-9-50" name="__codelineno-9-50" href="#__codelineno-9-50"></a><span class="c1"># Get the next byte for the three triplets</span>
+</span><span id="__span-9-51"><a id="__codelineno-9-51" name="__codelineno-9-51" href="#__codelineno-9-51"></a><span class="k">def</span><span class="w"> </span><span class="nf">next_byte</span><span class="p">(</span><span class="n">triplets</span><span class="p">):</span>
+</span><span id="__span-9-52"><a id="__codelineno-9-52" name="__codelineno-9-52" href="#__codelineno-9-52"></a>    <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-9-53"><a id="__codelineno-9-53" name="__codelineno-9-53" href="#__codelineno-9-53"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+</span><span id="__span-9-54"><a id="__codelineno-9-54" name="__codelineno-9-54" href="#__codelineno-9-54"></a>        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span>
+</span><span id="__span-9-55"><a id="__codelineno-9-55" name="__codelineno-9-55" href="#__codelineno-9-55"></a>        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">|</span> <span class="n">next_bit</span><span class="p">(</span><span class="n">triplets</span><span class="p">)</span>
+</span><span id="__span-9-56"><a id="__codelineno-9-56" name="__codelineno-9-56" href="#__codelineno-9-56"></a>    <span class="k">return</span> <span class="n">s</span>
+</span></code></pre></div>
+<p>Then we can incorporate the cipher recovered from the flash, and use its length to generate all the RNG's numbers we will need.</p>
+<div class="language-py highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Set enc to integer values of the bytes in the cipher</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">enc</span> <span class="o">=</span> <span class="s2">&quot;JIGGYCIPHER</span><span class="si">{a1557d3801d7723f3d385111d85cd125625cc260ba76d3051a5de6ff24786b8fc70c1659aa4c41b9151c8eef70d438515a6642562ab9f0403f276ba556a7429829433d2572484f2585719d468964832ab1a258521f568165c3ab1bead146ecd2de65a5d812b53ca5c168473bac895d4a8bc37390f860b11e6a6eb442c249180a9c337285455ab098d47b7264ec42bed7688d59dcdfddcf3d0de674356cbee22547e087c63be52013dc319600c4a4859788ab87349c6c81ea9598127f87093c148c1d3e94edea50132f324eaf5cc88b63b8fac20cf6}</span><span class="s2">&quot;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">enc</span> <span class="o">=</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">enc</span><span class="p">[</span><span class="mi">12</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">enc</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">enc</span><span class="p">)</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1">## print(enc)</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="c1">## [161, 85, 125, 56, ... ]</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="c1"># Build the triplets (the seed) of the RNG</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="n">triplets</span> <span class="o">=</span> <span class="n">build_triplets</span><span class="p">()</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="c1"># Generate the RNG nums, one for each encrypted byte</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="n">rng_nums</span> <span class="o">=</span> <span class="p">[</span><span class="n">next_byte</span><span class="p">(</span><span class="n">triplets</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">enc</span><span class="p">))]</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="c1">## print(rng_nums)</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="c1">## [128, 81, 12, 36, ... ]</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="c1">## These numbers were compared to the output in the emulator to ensure accuracy.</span>
+</span></code></pre></div>
+<p>Each iteration of loop 2 in <code>RefsJiggy</code> appended three bytes and each of the three bytes were generated a different way. Therefore, we will need to recover each of these bytes differently. Let's start by separating each of the three bytes from <code>enc</code>, and their respective random numbers as well.</p>
+<div class="language-py highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">enc_1</span> <span class="o">=</span> <span class="p">[</span><span class="n">byte</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">byte</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">enc</span><span class="p">)</span> <span class="k">if</span> <span class="n">index</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="c1"># [161, 56, ...]</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">enc_2</span> <span class="o">=</span> <span class="p">[</span><span class="n">byte</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">byte</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">enc</span><span class="p">)</span> <span class="k">if</span> <span class="n">index</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> <span class="c1"># [85, ... ]</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">enc_3</span> <span class="o">=</span> <span class="p">[</span><span class="n">byte</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">byte</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">enc</span><span class="p">)</span> <span class="k">if</span> <span class="n">index</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">2</span><span class="p">]</span> <span class="c1"># [125, ... ]</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="n">rng_nums_1</span> <span class="o">=</span> <span class="p">[</span><span class="n">byte</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">byte</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rng_nums</span><span class="p">)</span> <span class="k">if</span> <span class="n">index</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="c1"># [128, 36, ... ]</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="n">rng_nums_2</span> <span class="o">=</span> <span class="p">[</span><span class="n">byte</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">byte</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rng_nums</span><span class="p">)</span> <span class="k">if</span> <span class="n">index</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> <span class="c1"># [ 81, ... ]</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="n">rng_nums_3</span> <span class="o">=</span> <span class="p">[</span><span class="n">byte</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">byte</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rng_nums</span><span class="p">)</span> <span class="k">if</span> <span class="n">index</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">2</span><span class="p">]</span> <span class="c1"># [ 12, ... ]</span>
+</span></code></pre></div>
+<p>Referring back to our reversing in <a href="#loop-2">Loop 2</a>, we can deduce:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>*(Y+5) = *(Y+5) ^ *(Y+10)
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>enc_1_byte = **(Y+48,Y+47) ^ *(Y+11) ^ random_next()
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>enc_2_byte = *(Y+11) ^ *(Y+5) ^ random_next()
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>enc_3_byte = *(Y+10) ^ random_next()
+</span></code></pre></div>
+<p>The three plaintext characters we are attempting to recover are stored in <code>*(Y+10)</code>, <code>*(Y+11)</code>, and <code>**(Y+48,Y+47)</code>.</p>
+<p><code>*(Y+5)</code> is dependent on the values of <code>*(Y+10)</code> from the previous loops, and starts with a value of <code>0</code>.</p>
+<p>Reversing these formulas, we can get:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>*(Y+10) = enc_3_byte ^ random_next()
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>*(Y+11) = enc_2_byte ^ *(Y+5) ^ random_next()
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>**(Y+48,47) = enc_1_byte ^ *(Y+11) ^ random_next()
+</span></code></pre></div>
+<p>So let's turn this pseudo-code into real Python code and get that plaintext!</p>
+<p><code>*(Y+10)</code> is a simple XOR against the random number, so we start with that:</p>
+<div class="language-py highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Recover characters from enc_3</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="c1"># *(Y+10) = enc_3_byte ^ random_next()</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="n">dec_3</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">enc_3</span><span class="p">)):</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>    <span class="n">d</span> <span class="o">=</span> <span class="n">enc_3</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="n">rng_nums_3</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>    <span class="n">dec_3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">chr</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">dec_3</span><span class="p">]))</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="c1"># qo:Gvrmnso h nutilWrd o er inso ls n te,Icm rmCbrpc,tenwhm fM~jb;hl{~ne</span>
+</span></code></pre></div>
+<p>ASCII text! At this point I nearly had a heartattack. Over a week's effort had finally resulted in something readable.</p>
+<p>Let's keep going.</p>
+<p>Now that we have the values of <code>*(Y+10)</code>, we can generate the iterative <code>*(Y+5)</code>. With <code>*(Y+5)</code>, we can recover <code>*(Y+11)</code>:</p>
+<div class="language-py highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Recover characters from enc_2</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="c1"># *(Y+5) = *(Y+5) ^ *(Y+10)</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="c1"># *(Y+11) = enc_2_byte ^ *(Y+5) ^ random_next()</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="n">dec_2</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="n">key</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">enc_2</span><span class="p">)):</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>    <span class="n">key</span> <span class="o">^=</span> <span class="n">dec_3</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>    <span class="n">d</span> <span class="o">=</span> <span class="n">enc_2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="n">key</span> <span class="o">^</span> <span class="n">rng_nums_2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>    <span class="n">dec_2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">chr</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">dec_2</span><span class="p">]))</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="c1"># ut{oenet fteIdsra ol,yuwaygat ffehadsel  oefo yesae h e oeo i~p}ca:~edr</span>
+</span></code></pre></div>
+<p>More ASCII text! You can infact put the above two together to recover <code>input_string</code>, but lets finish this out before doing that. Now with <code>*(Y+11)</code>, we can recover <code>**(Y+48,Y+47)</code>:</p>
+<div class="language-py highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># Recover characters from enc_1</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="c1"># **(Y+48,47) = enc_1_byte ^ *(Y+11) ^ random_next()</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="n">dec_1</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">enc_1</span><span class="p">)):</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>    <span class="n">d</span> <span class="o">=</span> <span class="n">enc_1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="n">dec_2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^</span> <span class="n">rng_nums_1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>    <span class="n">dec_1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">chr</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">dec_1</span><span class="p">]))</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="c1"># This is an Amazon(.ca?) gift card. Your claim code is ZBUH-3PYCC6-DKAG.</span>
+</span></code></pre></div>
+<p>Well, there's <code>input_string_2</code>. Don't bother trying the code, we already did :)</p>
+<p>Let's get the first <code>input_string</code> and wrap it all up in a nice bow now.</p>
+<div class="language-py highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># Put together strings</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="n">input_string_1</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">chr</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="nb">chr</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">dec_3</span><span class="p">,</span> <span class="n">dec_2</span><span class="p">)])</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="n">input_string_2</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">chr</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">dec_1</span><span class="p">])</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">input_string_1</span><span class="p">)</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">input_string_2</span><span class="p">)</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>quot:{Governments of the Industrial World, you weary giants of flesh and steel, I come from Cyberspace, the new home of Mi~~jpb};chal:{~~ender
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>This is an Amazon(.ca?) gift card. Your claim code is ZBUH-3PYCC6-DKAG.
+</span></code></pre></div>
+<p>The quote above is a bit mangled, but here it is in full:</p>
+<blockquote>
+<p>Governments of the Industrial World, you weary giants of flesh and steel, I come from Cyberspace, the new home of Mind. On behalf of the future, I ask you of the past to leave us alone. You are not welcome among us. You have no sovereignty where we gather</p>
+</blockquote>
+<p>— John Perry Barlow, "A Declaration of the Independence of Cyberspace"</p>
+<p><a href="../../../../cybersci2023/hardware-challenge/attachments/asd.py">Final solve script: asd.py</a></p>
+<h2 id="final-remarks">Final Remarks</h2>
+<p>A big thanks to <a href="https://www.loudmouth.io/">Loudmouth Security</a> for providing the badges and this challenge. Another big thanks to <a href="https://cybersecuritychallenge.ca/">CyberSci</a> for this year's competition.</p>
+<p>This challenge was a rollercoaster, and don't let the presentation of this writeup fool you, finding the solution was in no way a linear, clearly-defined journey. The road to solving this was bumpy, but both of us learned a lot about hardware, reversing, and maybe a bit too much about AVR in the process.</p>
+<p>All in all, it was a lot of fun and hopefully a similar challenge will be seen next year.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+  <h2 id="__comments">Comments</h2>
+  <!-- Insert generated snippet here -->
+  <script src="https://giscus.app/client.js"
+        data-repo="iamsilk/silk.one-giscus"
+        data-repo-id="R_kgDOJ0Ztjg"
+        data-category="Comments"
+        data-category-id="DIC_kwDOJ0Ztjs4CXffr"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="0"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="https://giscus.app/themes/custom_example.css"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    /* Set palette on initial load */
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate" ? "transparent_dark" : "light"
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    /* Register event handlers after documented loaded */
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate" ? "transparent_dark" : "light"
+
+          /* Instruct Giscus to change theme */
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/iamsilk" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/stephen-w/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["navigation.tabs", "content.code.copy"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
