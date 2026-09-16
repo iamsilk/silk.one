@@ -26,7 +26,7 @@ Best investment I've ever made was 128 GB of ECC RAM in November 2024 (before th
 
 ## CyberSci | Challenge Designer
 
-:fontawesome-solid-link: **[ctftime.org](https://ctftime.org/team/220236)**
+:fontawesome-solid-link: **[cybersci.ca](https://cybersci.ca)**
 
 :fontawesome-regular-calendar-check: **Sept 2024 - Present**
 
